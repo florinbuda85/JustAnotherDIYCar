@@ -19,6 +19,15 @@ void setup() {
 void loop() {
 }
 
+void car_start() {
+	analogWrite(motor1_forward, carSpeed);	
+}
+
+void car_stop() {
+	analogWrite(motor1_forward, 0);	
+	analogWrite(motor1_backward, 0);	
+}
+
 void accelerate() {
 	if (carSpeed < 255) {
 		carSpeed += 10;
