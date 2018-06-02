@@ -13,10 +13,15 @@ void setup() {
   pinMode(motor1_backward, OUTPUT);
   pinMode(motor2_left, OUTPUT);
   pinMode(motor2_right, OUTPUT);
+
+	Serial.begin(38400);
+
+	
 }
 
 
 void loop() {
+	
 }
 
 void turn_right() {
