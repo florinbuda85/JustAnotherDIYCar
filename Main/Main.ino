@@ -19,6 +19,18 @@ void setup() {
 void loop() {
 }
 
+void turn_right() {
+	digitalWrite(motor2_right, HIGH);
+  	delay(500);
+  	digitalWrite(motor2_right, LOW);
+}
+
+void turn_left() {
+	digitalWrite(motor2_left, HIGH);
+  	delay(500);
+  	digitalWrite(motor2_left, LOW);
+}
+
 void car_start() {
 	analogWrite(motor1_forward, carSpeed);	
 }
