@@ -18,3 +18,16 @@ void setup() {
 
 void loop() {
 }
+
+void accelerate() {
+	if (carSpeed < 255) {
+		carSpeed += 10;
+	}
+}
+
+void decelerate() {
+	carSpeed -= 10;
+	if (carSpeed < 0) {
+		carSpeed = 0;
+	}
+}
