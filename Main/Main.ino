@@ -7,6 +7,8 @@ int motor2_right = D3;
 
 int carSpeed = 70;
 
+int cmd;
+
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(motor1_forward, OUTPUT);
@@ -21,7 +23,35 @@ void setup() {
 
 
 void loop() {
-	
+  if (Serial.available()){
+    cmd = Serial.read();
+    switch (cmd){
+      case 'W' : {
+        car_start();
+        break;  
+      }
+      case 'S' : {
+        car_stop();
+        break;  
+      }
+      case 'A' : {
+        turn_left();
+        break;  
+      }
+      case 'D' : {
+        turn_left();
+        break;  
+      }
+      case 'Q' : {
+        accelerate();
+        break;  
+      }
+      case 'E' : {
+        decelerate();
+        break;  
+      }
+    }
+  }
 }
 
 void turn_right() {
