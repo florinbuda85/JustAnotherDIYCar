@@ -31,20 +31,18 @@ int maxSpeed = 1023;
 void setup() {
 
   Serial.begin(115200);
+  WiFi.begin(ssid, password);
+	
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
   
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(motor1_forward, OUTPUT);
   pinMode(motor1_backward, OUTPUT);
   pinMode(motor2_left, OUTPUT);
   pinMode(motor2_right, OUTPUT);
-
-
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
 
   server.on("/", HTTP_GET, handleRoot); 
   server.on("/W", HTTP_GET, handleForward); 
@@ -93,31 +91,31 @@ void handleTurnRight() {
 }
 
 void handleTurnLeft() {
-  turn_left();
-  server.sendHeader("Location","/");
-  server.send(303); 
+	turn_left();
+	server.sendHeader("Location","/");
+	server.send(303); 
 }
 
 void loop() {
-  server.handleClient();
+	server.handleClient();
 }
 
 void turn_right() {
-  digitalWrite(motor2_right, HIGH);
-  delay(700);
-  digitalWrite(motor2_right, LOW);
+  	digitalWrite(motor2_right, HIGH);
+  	delay(700);
+  	digitalWrite(motor2_right, LOW);
 }
 
 void turn_left() {
 	digitalWrite(motor2_left, HIGH);
-  delay(700);
-  digitalWrite(motor2_left, LOW);
+ 	delay(700);
+  	digitalWrite(motor2_left, LOW);
 }
 
 void car_forward() {
 	analogWrite(motor1_forward, carSpeed);	
-  //digitalWrite(motor1_forward, 1);  
-  Serial.println(carSpeed);
+  	//digitalWrite(motor1_forward, 1);  
+  	Serial.println(carSpeed);
 }
 
 void car_stop() {
@@ -126,11 +124,11 @@ void car_stop() {
 }
 
 void accelerate() {
-  carSpeed += 50;
+	carSpeed += 50;
 	if (carSpeed > maxSpeed) {
 		carSpeed = maxSpeed;
 	}
- car_forward();
+	car_forward();
 }
 
 void decelerate() {
